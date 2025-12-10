@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>IXIXIX</title>
+<style>
+body{
+    margin:0;
+    background:#000;
+    color:#fff;
+    font-family:monospace;
+    overflow:hidden;
+}
+
+/* LAYER 2 */
+body::before{
+    content:"PROPERTY OF IRONPIXEL HOSTING — PROPERTY OF IRONPIXEL HOSTING — PROPERTY OF IRONPIXEL HOSTING";
+    opacity:0.09;
+    position:fixed;
+    top:0;left:0;width:100%;
+    font-size:40px;
+    text-align:center;
+    pointer-events:none;
+    white-space:nowrap;
+}
+
+/* LAYER 6 (pure CSS) */
+body::after{
+    content:"PROPERTY OF IRONPIXEL HOSTING";
+    opacity:0.07;
+    position:fixed;
+    bottom:0;right:0;
+    font-size:30px;
+    pointer-events:none;
+}
+</style>
+</head>
+<body>
+
+<!-- LAYER 1 -->
+<div id="L1">PROPERTY OF IRONPIXEL HOSTING</div>
+
+<canvas id="L5"></canvas>
+
+<script>
+/* LAYER 3: auto-regen */
+setInterval(()=>{
+    if(!document.getElementById("L1")){
+        let n=document.createElement("div");
+        n.id="L1";
+        n.innerText="PROPERTY OF IRONPIXEL HOSTING";
+        n.style.cssText="opacity:0.12;font-size:38px;text-align:center;pointer-events:none;user-select:none;margin-top:20px";
+        document.body.prepend(n);
+    }
+},120);
+
+/* LAYER 4: shadow dom 1 */
+(()=>{
+    let h=document.createElement("div");
+    h.style.position="fixed";h.style.left="0";h.style.top="50%";h.style.width="100%";
+    let s=h.attachShadow({mode:"closed"});
+    let x=document.createElement("div");
+    x.textContent="PROPERTY OF IRONPIXEL HOSTING";
+    x.style.cssText="opacity:0.09;font-size:32px;text-align:center;pointer-events:none;";
+    s.appendChild(x);
+    document.body.appendChild(h);
+})();
+
+/* LAYER 7: shadow dom 2 */
+(()=>{
+    let h=document.createElement("div");
+    h.style.position="fixed";h.style.right="0";h.style.top="0";h.style.width="200px";
+    let s=h.attachShadow({mode:"closed"});
+    let x=document.createElement("div");
+    x.textContent="PROPERTY OF IRONPIXEL HOSTING";
+    x.style.cssText="opacity:0.08;font-size:20px;transform:rotate(90deg);pointer-events:none;";
+    s.appendChild(x);
+    document.body.appendChild(h);
+})();
+
+/* LAYER 5: canvas watermark */
+function draw(){
+    let c=document.getElementById("L5");
+    c.width=innerWidth; c.height=innerHeight;
+    let g=c.getContext("2d");
+    g.globalAlpha=0.06;
+    g.font="60px monospace";
+    g.fillStyle="#fff";
+    g.fillText("PROPERTY OF IRONPIXEL HOSTING",20,80);
+}
+draw();
+onresize=draw;
+
+/* LAYER 8: DOM observer that panics if you touch anything */
+new MutationObserver(()=>{
+    let ok = document.body.innerHTML.includes("PROPERTY OF IRONPIXEL HOSTING");
+    if(!ok){
+        document.body.innerHTML="<h1 style='color:red;text-align:center;margin-top:30vh'>WATERMARK INTEGRITY ERROR</h1>";
+    }
+}).observe(document.body,{childList:true,subtree:true,characterData:true});
+
+/* LAYER 9: regenerating hidden clone */
+setInterval(()=>{
+    let ghost=document.getElementById("___ghost");
+    if(!ghost){
+        let g=document.createElement("div");
+        g.id="___ghost";
+        g.style.display="none";
+        g.innerText="PROPERTY OF IRONPIXEL HOSTING";
+        document.body.appendChild(g);
+    }
+},500);
+
+</script>
+
+</body>
+</html>
